@@ -12,18 +12,20 @@ c = 0 # counter
 # Method
 
 def newPointerPosition(p, instruction):
-    if instruction[0] == "L":
-        mult = abs((p - int(instruction[1:])) // 100)
-        remain = (p - int(instruction[1:])) % 100 
+    iDir = instruction[0]
+    iSteps = int(instruction[1:])
+
+    if iDir == "L":
+        mult = abs((p - iSteps) // 100)
+        newP = (p - iSteps) % 100 
         if p == 0:
             mult = mult - 1
-        if remain == 0:
+        if newP == 0:
             mult = mult + 1
-        newP = remain
 
-    elif instruction[0] == "R":
-        mult = (p + int(instruction[1:])) // 100
-        newP = (p + int(instruction[1:])) % 100 
+    elif iDir == "R":
+        mult = (p + iSteps) // 100
+        newP = (p + iSteps) % 100 
 
     return newP, mult
 
